@@ -1,0 +1,15 @@
+Date/calendar
+	Day, Month, Year
+
+TimePlaner
+	Datum, cas, lokacija (String (name))...
+
+User
+	Ime, Priimek, UserName
+
+Objava
+	Usera, text, datum, cas, Lokacijo
+
+Lokacija
+
+	Mesto, naslov
