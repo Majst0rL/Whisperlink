@@ -1,4 +1,5 @@
-import javax.persistence.*;
+package com.whisperlink.whisperlink.models;
+import jakarta.persistence.*;
 
 @Entity
 public class Location {

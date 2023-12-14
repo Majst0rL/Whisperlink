@@ -1,4 +1,5 @@
 package com.whisperlink.whisperlink.controllers;
+
 import com.whisperlink.whisperlink.dao.PostRepository;
 import com.whisperlink.whisperlink.models.Post;
 
@@ -17,14 +18,14 @@ public class PostController {
     private final PostRepository postRepository;
 
     @Autowired
-    public postController(PostRepository postRepository) {
+    public PostController(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
     // GET for all
     @GetMapping
     public ResponseEntity<List<Post>> allPosts() {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = (List<Post>) postRepository.findAll();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
@@ -32,7 +33,7 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<Post> postByID(@PathVariable Long id) {
         Optional<Post> posts = postRepository.findById(id);
-        return objava.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+        return posts.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -45,10 +46,10 @@ public class PostController {
 
     // PUT
     @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Objava updatedPost) {
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post updatedPost) {
         if (postRepository.existsById(id)) {
             updatedPost.setId(id);
-            Objava upPost = postRepository.save(updatedPost);
+            Post upPost = postRepository.save(updatedPost);
             return new ResponseEntity<>(upPost, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,8 +59,8 @@ public class PostController {
     // DELETE post
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-        if (objavaRepository.existsById(id)) {
-            objavaRepository.deleteById(id);
+        if (postRepository.existsById(id)) {
+            postRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

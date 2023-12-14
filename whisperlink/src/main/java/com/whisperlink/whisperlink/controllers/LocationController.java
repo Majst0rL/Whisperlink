@@ -58,8 +58,8 @@ public class LocationController {
     // DELETE brisanje podatkov zapisa
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLocation(@PathVariable Long id) {
-        if (lokacijaRepository.existsById(id)) {
-            lokacijaRepository.deleteById(id);
+        if (locationRepository.existsById(id)) {
+            locationRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
