@@ -2,7 +2,6 @@ package com.whisperlink.whisperlink.models;
 import jakarta.persistence.*;
 import java.util.*;
 
-
 @Entity
 public class Post {
 
@@ -26,12 +25,13 @@ public class Post {
         this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public void setText(String text) {
-        this.text = text;
+        this.text = this.text;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setDate(Date date) {
@@ -55,7 +55,7 @@ public class Post {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public Date getDate() {
