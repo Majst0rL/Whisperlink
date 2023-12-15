@@ -14,6 +14,8 @@ public class User {
     private String lastName;
     private String username;
 
+    private String test;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
 
