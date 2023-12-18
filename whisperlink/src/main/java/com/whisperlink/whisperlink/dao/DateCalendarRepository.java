@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DateCalendarRepository extends CrudRepository<DateCalendar, Long> {
 
-    // Custom query for retrieving DateCalendars by year
+    // Complex query for two parameters
     @Query("SELECT d FROM DateCalendar d WHERE d.year = ?1")
     List<DateCalendar> findByYear(int year);
 
