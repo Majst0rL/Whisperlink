@@ -19,10 +19,9 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    //GET all users
     @GetMapping("/")
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    public List<User> getAllUsers() {return (List<User>) userRepository.findAll();}
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
