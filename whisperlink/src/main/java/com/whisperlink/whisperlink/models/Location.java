@@ -10,6 +10,7 @@ public class Location {
 
     private String address;
     private String city;
+    private String country;
 
     //setters
     public void setId(Long id) {
@@ -18,6 +19,9 @@ public class Location {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void setCity(String city) {
@@ -28,7 +32,7 @@ public class Location {
     public Long getId() {
         return id;
     }
-
+    public String getCountry() {return country;}
     public String getAddress() {
         return address;
     }
