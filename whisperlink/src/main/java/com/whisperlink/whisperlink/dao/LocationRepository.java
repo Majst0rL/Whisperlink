@@ -9,7 +9,7 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
 
 
     // Complex query for two parameters
-    @Query("SELECT l FROM Location l WHERE l.address = :address")
+    @Query("SELECT l FROM Location l WHERE l.address = 'Nek naslov'")
     List<Location> findByAddress(@Param("address") String address);
 
 }
