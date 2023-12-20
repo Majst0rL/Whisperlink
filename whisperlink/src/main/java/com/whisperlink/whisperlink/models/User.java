@@ -40,7 +40,7 @@ public class User {
         return birthDate;
     }
 
-    public Gender getGeneder() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -88,8 +88,9 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public void setGeneder(Gender geneder) {
-        this.gender = geneder;
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public void setEmail(String email) {
