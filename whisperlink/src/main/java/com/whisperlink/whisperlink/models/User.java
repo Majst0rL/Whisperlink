@@ -17,19 +17,41 @@ public class User {
     private Date birthDate;
     private Gender gender; //MALE,FEMALE
     private String email;
-
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;  // Uporaba UserRole enumeracije za vlogo
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    public User(String firstName, String lastName, String username,Date birthDate,Gender gender, String email){
+    public void setUserRole(String userRole) {
+        this.userRole = UserRole.valueOf(userRole);
+    }
+
+    public User(String firstName, String lastName, String username, String password, UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
     }
 
     public User() {
@@ -99,5 +121,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userRole=" + userRole +
+                '}';
     }
 }

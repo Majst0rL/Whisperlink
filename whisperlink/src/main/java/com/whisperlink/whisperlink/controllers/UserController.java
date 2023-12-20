@@ -73,17 +73,18 @@ public class UserController {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    //REGISTER User
+    // REGISTER User
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User newUser) {
         // SET role for user
-//        newUser.setRole("USER");
+        String userRole = "USER";
 
         // SET encoded password for user
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);
 
-        User registeredUser = userService.registerUser(newUser);
+        User registeredUser = userService.registerUser(newUser, userRole);
         return ResponseEntity.ok(registeredUser);
     }
+
 }

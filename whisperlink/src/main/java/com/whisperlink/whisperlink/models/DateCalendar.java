@@ -85,5 +85,5 @@ public class DateCalendar {
         return Objects.hash(id, day, month, year);
     }
 
-    // Dodajte druge metode glede na vaše potrebe
+
 }
