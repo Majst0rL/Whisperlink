@@ -15,7 +15,7 @@ public class User {
     private String lastName;
     private String username;
     private Date birthDate;
-    private Gender geneder; //MALE,FEMALE
+    private Gender gender; //MALE,FEMALE
     private String email;
 
     private String password;
@@ -28,7 +28,7 @@ public class User {
         this.lastName = lastName;
         this.username = username;
         this.birthDate = birthDate;
-        this.geneder = gender;
+        this.gender = gender;
         this.email = email;
     }
 
@@ -41,7 +41,7 @@ public class User {
     }
 
     public Gender getGeneder() {
-        return geneder;
+        return gender;
     }
 
     public String getEmail() {
@@ -89,7 +89,7 @@ public class User {
     }
 
     public void setGeneder(Gender geneder) {
-        this.geneder = geneder;
+        this.gender = geneder;
     }
 
     public void setEmail(String email) {
