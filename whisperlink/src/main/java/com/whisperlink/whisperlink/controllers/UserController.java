@@ -4,6 +4,7 @@ import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -87,4 +88,16 @@ public class UserController {
         return ResponseEntity.ok(registeredUser);
     }
 
+    // LOGIN
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return ResponseEntity.ok("Login successful for user: " + username);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+    }
 }

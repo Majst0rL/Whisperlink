@@ -38,6 +38,8 @@ public class User {
     }
 
 
+    @ManyToMany(mappedBy = "users")
+    private List<Organization> organizations;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;

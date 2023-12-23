@@ -11,7 +11,7 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "organizations")
+    @ManyToMany
     private List<User> users;
 
     private String name;
