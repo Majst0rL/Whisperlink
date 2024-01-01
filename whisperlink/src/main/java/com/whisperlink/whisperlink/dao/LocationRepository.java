@@ -7,9 +7,8 @@ import java.util.List;
 
 public interface LocationRepository extends CrudRepository<Location, Long> {
 
-
-    // Complex query for two parameters
-    @Query("SELECT l FROM Location l WHERE l.address = ?1")
-    List<Location> findByAddress(@Param("address") String address);
+    // Complex query with 3 parameters
+    @Query("SELECT l FROM Location l WHERE l.address = :address AND l.id = :id AND l.city = :city")
+    List<Location> findByAddress(@Param("address") String address,@Param("id") Long id,@Param("city") String city );
 
 }

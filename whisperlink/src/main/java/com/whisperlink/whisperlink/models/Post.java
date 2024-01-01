@@ -1,6 +1,5 @@
 package com.whisperlink.whisperlink.models;
 import jakarta.persistence.*;
-import java.util.*;
 
 @Entity
 public class Post {
@@ -14,12 +13,32 @@ public class Post {
     private User user;
 
     private String text;
-    private Date date;
+    @ManyToOne
+    @JoinColumn(name = "date_calendar_id")
+    private DateCalendar date;
     private String time;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+
+    // Konstruktor
+    public Post(User user, String text, DateCalendar date, String time) {
+        this.user = user;
+        this.text = text;
+        this.date = date;
+        this.time = time;
+    }
+
+    //Default Constructor
+    public Post() {
+
+    }
+
+    // Getterji in setterji
+
+
 
     public void setId(Long id) {
         this.id = id;
@@ -34,7 +53,7 @@ public class Post {
         this.user = user;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateCalendar date) {
         this.date = date;
     }
 
@@ -58,7 +77,7 @@ public class Post {
         return this.text;
     }
 
-    public Date getDate() {
+    public DateCalendar getDate() {
         return date;
     }
 

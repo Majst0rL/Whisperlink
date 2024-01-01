@@ -19,7 +19,7 @@ public class User {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;  // Uporaba UserRole enumeracije za vlogo
+    private UserRole userRole;  // ADMIN, USER, MODERATOR
 
     public UserRole getUserRole() {
         return userRole;

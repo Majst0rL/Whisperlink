@@ -11,8 +11,12 @@ public class TimePlanner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date dateTime;
-    private String location;
+    @ManyToOne
+    @JoinColumn(name = "date_calendar_id")
+    private DateCalendar date;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
     private String name;
 
     // Konstruktorji
@@ -20,8 +24,8 @@ public class TimePlanner {
         // Privzeti prazen konstruktor
     }
 
-    public TimePlanner(Date dateTime, String location, String name) {
-        this.dateTime = dateTime;
+    public TimePlanner(DateCalendar date, Location location, String name) {
+        this.date = date;
         this.location = location;
         this.name = name;
     }
@@ -35,19 +39,19 @@ public class TimePlanner {
         this.id = id;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public DateCalendar getDateTime() {
+        return date;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(DateCalendar date) {
+        this.date = date;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -64,7 +68,7 @@ public class TimePlanner {
     public String toString() {
         return "TimePlanner{" +
                 "id=" + id +
-                ", dateTime=" + dateTime +
+                ", dateTime=" + date +
                 ", location='" + location + '\'' +
                 ", name='" + name + '\'' +
                 '}';
@@ -76,7 +80,7 @@ public class TimePlanner {
         if (o == null || getClass() != o.getClass()) return false;
         TimePlanner that = (TimePlanner) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(dateTime, that.dateTime) &&
+                Objects.equals(date, that.date) &&
                 Objects.equals(location, that.location) &&
                 Objects.equals(name, that.name);
     }

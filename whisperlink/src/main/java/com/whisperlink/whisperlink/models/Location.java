@@ -12,6 +12,18 @@ public class Location {
     private String city;
     private String country;
 
+    //Constructor
+    public Location(String address, String city, String country) {
+        this.address = address;
+        this.city = city;
+        this.country = country;
+    }
+
+    //Default constructor
+    public Location() {
+
+    }
+
     //setters
     public void setId(Long id) {
         this.id = id;

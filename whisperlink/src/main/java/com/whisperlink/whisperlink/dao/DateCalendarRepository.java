@@ -3,16 +3,18 @@ package com.whisperlink.whisperlink.dao;
 import com.whisperlink.whisperlink.models.DateCalendar;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface DateCalendarRepository extends CrudRepository<DateCalendar, Long> {
 
-    @Query("SELECT d FROM DateCalendar d WHERE d.year = ?1")
-    List<DateCalendar> findByYear(int year);
+    //Complex querry with 3 parameters
+    @Query("SELECT d FROM DateCalendar d WHERE d.year = :year AND d.id = :id and d.month = :month")
+    List<DateCalendar> findByYear(@Param("year") int year, @Param("id") Long id, @Param("month") int month);
 
-    // Custom query for retrieving DateCalendars by month and year
-    @Query("SELECT d FROM DateCalendar d WHERE d.month = ?1 AND d.year = ?2")
-    List<DateCalendar> findByMonthAndYear(int month, int year);
+    // Complex query with 2 parameters
+    @Query("SELECT d FROM DateCalendar d WHERE d.month = :month AND d.year = :year")
+    List<DateCalendar> findByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
 }
