@@ -12,6 +12,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
+//TEST
 //import com.whisperlink.whisperlink.services.UserService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;

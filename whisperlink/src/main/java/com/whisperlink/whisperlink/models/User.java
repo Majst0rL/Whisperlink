@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Date;
-
 @Entity
 public class User {
 
