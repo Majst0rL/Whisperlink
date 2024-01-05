@@ -31,4 +31,21 @@ public interface PostRepository extends CrudRepository<Post, Long> {
             @Param("endDMonth") int endDMonth,
             @Param("endDDay") int endDDay);
 
+    // Searching posts by username, name and lastname, location adress posted in last 3 months
+
+    @Query("SELECT p FROM Post p " +
+            "JOIN p.user u " +
+            "JOIN p.date d " +
+            "JOIN p.location l " +
+            "WHERE d.month >= MONTH(CURRENT_DATE()) - 2 " +
+            "AND d.year = YEAR(CURRENT_DATE()) " +
+            "AND u.username = :username " +
+            "AND u.firstName = :firstName " +
+            "AND u.lastName = :lastName " +
+            "AND l.address = :address")
+    List<Post> findPostsByDateUserAndLocation(
+            @Param("username") String username,
+            @Param("firstName") String firstName,
+            @Param("lastName") String lastName,
+            @Param("address") String address);
 }
