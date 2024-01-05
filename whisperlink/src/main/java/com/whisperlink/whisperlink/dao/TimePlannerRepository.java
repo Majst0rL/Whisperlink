@@ -1,5 +1,6 @@
 package com.whisperlink.whisperlink.dao;
 
+import com.whisperlink.whisperlink.models.DateCalendar;
 import com.whisperlink.whisperlink.models.TimePlanner;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +19,8 @@ public interface TimePlannerRepository extends CrudRepository<TimePlanner, Long>
     @Query("SELECT t FROM TimePlanner t WHERE t.location = :location AND t.name = :name")
     List<TimePlanner> findByLocationAndName(@Param("location") String location, @Param("name") String name);
 
-    //  complex query with 2 parameters (start and end date)
-    @Query("SELECT t FROM TimePlanner t WHERE t.date BETWEEN :startDate AND :endDate")
-    List<TimePlanner> findByDateBetween(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+//    //  complex query with 2 parameters (start and end date)
+//    @Query("SELECT t FROM TimePlanner t WHERE t.Date BETWEEN :startDate AND :endDate")
+//    List<TimePlanner> findByDateBetween(@Param("startDate") DateCalendar startDate, @Param("endDate") LocalDate endDate);
 
 }

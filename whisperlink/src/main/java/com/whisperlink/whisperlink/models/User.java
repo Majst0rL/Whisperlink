@@ -13,7 +13,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String username;
-    private Date birthDate;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "date_calendar_id", referencedColumnName = "id")
+    private DateCalendar birthDate;
     private Gender gender; //MALE,FEMALE
     private String email;
     private String password;
@@ -59,7 +61,7 @@ public class User {
 
     }
 
-    public Date getBirthDate() {
+    public DateCalendar getBirthDate() {
         return birthDate;
     }
 
@@ -107,7 +109,7 @@ public class User {
         this.username = username;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(DateCalendar birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -11,4 +11,6 @@ import java.util.List;
 public interface OrganizationRepository extends CrudRepository<Organization, Long> {
     @Query("SELECT o.users FROM Organization o WHERE o.id = :orgId")
     List<User> findUsersInOrganization(@Param("orgId") Long orgId);
+
+
 }
