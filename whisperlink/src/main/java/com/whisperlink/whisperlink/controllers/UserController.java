@@ -1,4 +1,5 @@
 package com.whisperlink.whisperlink.controllers;
+import com.whisperlink.whisperlink.models.Organization;
 import com.whisperlink.whisperlink.models.User;
 import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.services.UserService;
@@ -99,5 +100,12 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
+    }
+
+    // GET organizations from user id
+    @GetMapping("/{userId}/organizations")
+    public ResponseEntity<List<Organization>> getUserOrganizations(@PathVariable("userId") Long userId) {
+        List<Organization> organizations = userRepository.findUserOrganizations(userId);
+        return ResponseEntity.ok(organizations);
     }
 }
