@@ -47,9 +47,9 @@ public class OrganizationController {
     }
 
     //GET users from organization id
-    @GetMapping("/{orgId}/users")
-    public ResponseEntity<List<User>> getUsersInOrganization(@PathVariable("orgId") Long orgId) {
-        List<User> users = organizationRepository.findUsersInOrganization(orgId);
-        return ResponseEntity.ok(users);
-    }
+//    @GetMapping("/{orgId}/users")
+//    public ResponseEntity<List<User>> getUsersInOrganization(@PathVariable("orgId") Long orgId) {
+//        List<User> users = organizationRepository.findUsersInOrganization(orgId);
+//        return ResponseEntity.ok(users);
+//    }
 }

@@ -103,9 +103,9 @@ public class UserController {
     }
 
     // GET organizations from user id
-    @GetMapping("/{userId}/organizations")
-    public ResponseEntity<List<Organization>> getUserOrganizations(@PathVariable("userId") Long userId) {
-        List<Organization> organizations = userRepository.findUserOrganizations(userId);
-        return ResponseEntity.ok(organizations);
-    }
+//    @GetMapping("/{userId}/organizations")
+//    public ResponseEntity<List<Organization>> getUserOrganizations(@PathVariable("userId") Long userId) {
+//        List<Organization> organizations = userRepository.findUserOrganizations(userId);
+//        return ResponseEntity.ok(organizations);
+//    }
 }

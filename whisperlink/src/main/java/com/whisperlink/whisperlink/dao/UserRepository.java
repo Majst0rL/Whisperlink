@@ -15,8 +15,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.firstName = :firstName AND u.lastName = :lastName")
     List<User> findByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
-    @Query("SELECT u.organizations FROM User u WHERE u.id = :userId")
-    List<Organization> findUserOrganizations(@Param("userId") Long userId);
+//    @Query("SELECT o FROM User u JOIN u.organizations o WHERE u.id = :userId")
+//    List<Organization> findUserOrganizations(@Param("userId") Long userId);
 
 
 
