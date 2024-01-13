@@ -41,4 +41,9 @@ public class DateCalendarController {
     public void removeDateCalendar(@PathVariable Long id) {
         dateCalendarRepository.deleteById(id);
     }
+    @GetMapping("gledenaleto/{year}/gledenamesec/{month}")
+    public List<DateCalendar> getiDateCalendars(@PathVariable("leto") int year, @PathVariable("month") int month) {
+        return (List<DateCalendar>) dateCalendarRepository.findByYear(year, month);
+    }
+
 }
