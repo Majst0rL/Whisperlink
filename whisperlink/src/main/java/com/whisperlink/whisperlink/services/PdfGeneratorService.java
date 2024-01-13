@@ -4,7 +4,6 @@ import com.whisperlink.whisperlink.models.Post;
 import org.springframework.stereotype.Service;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
-import org.springframework.stereotype.Service;
 import java.io.FileOutputStream;
 import java.io.IOException;
 @Service
