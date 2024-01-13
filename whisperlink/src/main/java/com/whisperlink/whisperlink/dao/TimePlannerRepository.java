@@ -18,6 +18,10 @@ public interface TimePlannerRepository extends CrudRepository<TimePlanner, Long>
     // Complex query with 2 parameters
     @Query("SELECT t FROM TimePlanner t WHERE t.location = :location AND t.name = :name")
     List<TimePlanner> findByLocationAndName(@Param("location") String location, @Param("name") String name);
+    // Corrected query without redundant 't.date.date'
+    @Query("SELECT t FROM TimePlanner t WHERE t.date BETWEEN :startDate AND :endDate")
+    List<TimePlanner> findByDateBetween(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
 
 //    //  complex query with 2 parameters (start and end date)
 //    @Query("SELECT t FROM TimePlanner t WHERE t.Date BETWEEN :startDate AND :endDate")

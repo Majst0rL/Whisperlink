@@ -1,6 +1,8 @@
 package com.whisperlink.whisperlink.models;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,9 +16,12 @@ public class TimePlanner {
     @ManyToOne
     @JoinColumn(name = "date_calendar_id")
     private DateCalendar date;
+
+
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
     private String name;
 
     // Konstruktorji

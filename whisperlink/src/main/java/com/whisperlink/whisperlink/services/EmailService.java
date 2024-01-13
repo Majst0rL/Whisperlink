@@ -1,30 +1,42 @@
 package com.whisperlink.whisperlink.services;
-import com.whisperlink.whisperlink.models.User;
 
+import com.whisperlink.whisperlink.models.User;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.io.File;
 
 @Service
 public class EmailService {
-    private JavaMailSenderImpl emailSender;
+    private JavaMailSender emailSender;
 
-    public EmailService(JavaMailSenderImpl emailSender) {
+    @Autowired
+    public EmailService(JavaMailSender emailSender) {
         this.emailSender = emailSender;
     }
 
+    public void sendSimpleMessageWithAttachment(User user, String to, String subject, String text, File attachment) {
+        MimeMessage message = emailSender.createMimeMessage();
 
-    public void sendSimpleMessage(User user, String to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(user.getEmail());
-        message.setTo(to); //e-mail of recepient
-        message.setSubject(subject);
-        message.setText(text);
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        // Settings for username and password
-        emailSender.setUsername(user.getEmail());
-        emailSender.setPassword(user.getPassword());
+            helper.setFrom(user.getEmail());
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(text);
 
-        emailSender.send(message);
+            // Attach the file
+            helper.addAttachment(attachment.getName(), attachment);
+
+            // Settings for username and password
+            emailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
     }
 }

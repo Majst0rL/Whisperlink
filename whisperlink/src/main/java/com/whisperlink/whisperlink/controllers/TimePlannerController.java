@@ -5,6 +5,7 @@ import com.whisperlink.whisperlink.models.TimePlanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,10 @@ public class TimePlannerController {
         return (List<TimePlanner>) timePlannerRepository.findAll();
     }
 
+    @GetMapping("/datebetween/{startdate}/{enddate}")
+    public List<TimePlanner> getDateBetween(@PathVariable("startdate") LocalDate startDate, @PathVariable("enddate")LocalDate endDate) {
+        return (List<TimePlanner>) timePlannerRepository.findByDateBetween(startDate, endDate);
+    }
     @PostMapping
     public void addTimePlanner(@RequestBody TimePlanner timePlanner) {
         timePlannerRepository.save(timePlanner);
