@@ -17,4 +17,5 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
             @Param("address") String address,
             @Param("postalCode") String postalCode
     );
+
 }

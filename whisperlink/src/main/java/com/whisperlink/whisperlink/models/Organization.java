@@ -14,6 +14,7 @@ public class Organization {
     @ManyToMany
     private List<User> users;
 
+
     private String name;
     private String description;
     private Date creation;

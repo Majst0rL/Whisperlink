@@ -7,11 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrganizationRepository extends CrudRepository<Organization, Long> {
-
-//    @Query(value = "SELECT u FROM User u JOIN u.organizations o WHERE o.id = :orgId")
-//    List<User> findUsersInOrganization(@Param("orgId") Long orgId);
-
-
 }

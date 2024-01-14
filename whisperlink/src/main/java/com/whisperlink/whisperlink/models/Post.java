@@ -8,6 +8,10 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Lob
+    private byte[] image;
+
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -23,8 +27,10 @@ public class Post {
     private Location location;
 
 
+
     // Konstruktor
-    public Post(User user, String text, DateCalendar date, String time) {
+    public Post(byte[] image, User user, String text, DateCalendar date, String time) {
+        this.image = image;
         this.user = user;
         this.text = text;
         this.date = date;
@@ -33,12 +39,18 @@ public class Post {
 
     //Default Constructor
     public Post() {
-
     }
 
     // Getterji in setterji
 
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public void setId(Long id) {
         this.id = id;
