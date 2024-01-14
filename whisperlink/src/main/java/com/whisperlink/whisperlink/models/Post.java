@@ -11,7 +11,6 @@ public class Post {
     @Lob
     private byte[] image;
 
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
