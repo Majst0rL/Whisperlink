@@ -3,7 +3,6 @@ import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.models.User;
 
 import com.whisperlink.whisperlink.models.UserRole;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
