@@ -17,13 +17,10 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
-    private final UserService userService;
-
 
     @Autowired
     public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
-        this.userService = userService;
     }
 
     //GET all users
@@ -84,18 +81,18 @@ public class UserController {
     }
 
     // LOGIN
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (password.equals(user.getPassword())) {
-                return ResponseEntity.ok("Login successful for user: " + username);
-            }
-        }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
+//        Optional<User> userOptional = userRepository.findByUsername(username);
+//
+//        if (userOptional.isPresent()) {
+//            User user = userOptional.get();
+//            if (password.equals(user.getPassword())) {
+//                return ResponseEntity.ok("Login successful for user: " + username);
+//            }
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+//    }
 
 }
