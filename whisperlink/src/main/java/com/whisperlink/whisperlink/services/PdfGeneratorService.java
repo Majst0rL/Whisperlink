@@ -25,7 +25,6 @@ public class PdfGeneratorService {
         postDetails.add(new Paragraph("Time: " + post.getTime()));
         postDetails.add(new Paragraph("Location: " + post.getLocation().getCity()));
 
-        // Prikaz slike v PDF
         if (post.getImage() != null) {
             Image image = Image.getInstance(post.getImage());
             document.add(image);

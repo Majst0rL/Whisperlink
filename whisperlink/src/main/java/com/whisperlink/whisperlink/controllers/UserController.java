@@ -2,6 +2,7 @@ package com.whisperlink.whisperlink.controllers;
 import com.whisperlink.whisperlink.models.Organization;
 import com.whisperlink.whisperlink.models.User;
 import com.whisperlink.whisperlink.dao.UserRepository;
+import com.whisperlink.whisperlink.models.UserRole;
 import com.whisperlink.whisperlink.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,12 @@ import java.util.Optional;
 public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
-    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserController(UserRepository userRepository, UserService userService,BCryptPasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     //GET all users
@@ -81,25 +80,23 @@ public class UserController {
         // SET role for user
         String userRole = "USER";
 
-        // SET encoded password for user
-        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
-        newUser.setPassword(encodedPassword);
-
-        User registeredUser = userService.registerUser(newUser, userRole);
+        User registeredUser = userService.registerUser(newUser, UserRole.valueOf(userRole));
         return ResponseEntity.ok(registeredUser);
     }
 
     // LOGIN
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        Optional<User> userOptional = userRepository.findByUsername(username);
 
-        if (passwordEncoder.matches(password, user.getPassword())) {
-            return ResponseEntity.ok("Login successful for user: " + username);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (password.equals(user.getPassword())) {
+                return ResponseEntity.ok("Login successful for user: " + username);
+            }
         }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
 
 }

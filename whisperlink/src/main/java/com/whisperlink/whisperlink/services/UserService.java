@@ -3,8 +3,6 @@ import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.models.User;
 
 import com.whisperlink.whisperlink.models.UserRole;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,11 +15,11 @@ import java.util.Collections;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
     @Override
@@ -37,40 +35,20 @@ public class UserService implements UserDetailsService {
         );
     }
 
-    public User registerUser(User newUser, String role) {
-        if (userRepository.existsByUsername(newUser.getUsername()) || userRepository.existsByEmail(newUser.getEmail())) {
-            throw new RuntimeException("Username or email already exists.");
-        }
-
-        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
-        newUser.setPassword(encodedPassword);
-
-        // Set user role
-        newUser.setUserRole(role);
-
-        return userRepository.save(newUser);
-    }
-
-    public User registerUser(User newUser, UserRole userRole) {  // Uporabite UserRole namesto String
-        if (userRepository.existsByUsername(newUser.getUsername()) || userRepository.existsByEmail(newUser.getEmail())) {
-            throw new RuntimeException("Username or email already exists.");
-        }
-
-        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
-        newUser.setPassword(encodedPassword);
-
+    public User registerUser(User newUser, UserRole userRole) {
         // Set user role
         newUser.setUserRole(userRole);
 
         return userRepository.save(newUser);
     }
 
+
     public User updateUserRole(Long userId, UserRole userRole) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
 
         // Customize the logic based on your requirements
-        if (userRole != null) {  // Dodajte preverjanje, da je vloga ne null
+        if (userRole != null) {
             user.setUserRole(userRole);
         } else {
             throw new IllegalArgumentException("Invalid role: " + userRole);
