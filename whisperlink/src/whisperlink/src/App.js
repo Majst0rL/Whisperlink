@@ -8,11 +8,8 @@ import Post from "./components/Post.jsx";
 import TimePlanner from "./components/TimePlanner.jsx";
 import User from "./components/User.jsx";
 import UserRole from "./components/UserRole.jsx";
-import Navigation from "./components/Navigation/Navigation.tsx";
-
-const Home = () => {
-  return <h1>Welcome to the Home Page</h1>;
-};
+import Navigation from "./components/Navigation/Navigation.jsx";
+import Home from "./components/Home/Home.jsx";
 
 const App = () => {
   return (
