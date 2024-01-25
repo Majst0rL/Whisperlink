@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/time-planners")
+@CrossOrigin
 public class TimePlannerController {
 
     @Autowired

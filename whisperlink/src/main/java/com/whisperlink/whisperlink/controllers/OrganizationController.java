@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/organizations")
+@CrossOrigin
 public class OrganizationController {
 
     private final OrganizationRepository organizationRepository;
