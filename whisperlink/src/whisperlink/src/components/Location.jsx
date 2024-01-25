@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { dataService } from "../modules/DataService";
 
 const Location = ({ id, initialAddress, initialCity, initialCountry }) => {
   const [address, setAddress] = useState(initialAddress || "");
@@ -9,6 +10,15 @@ const Location = ({ id, initialAddress, initialCity, initialCountry }) => {
 
   const handleEditClick = () => {
     // Logika za urejanje lokacije, če je potrebno
+    console.log("Editing location:", id);
+  };
+
+  const addLocation = () => {
+    const lokacija = {
+      address: "Nekaj",
+
+    }
+    dataService.createLocation(lokacija);
     console.log("Editing location:", id);
   };
 
@@ -23,6 +33,9 @@ const Location = ({ id, initialAddress, initialCity, initialCountry }) => {
       <Link to={`/locations/${id}/edit`} onClick={handleEditClick}>
         Edit Location
       </Link>
+
+      <br />
+      <button onClick={addLocation}>Dodaj lokacijo</button>
     </div>
   );
 };
