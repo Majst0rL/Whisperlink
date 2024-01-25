@@ -1,7 +1,7 @@
 package com.whisperlink.whisperlink.services;
+
 import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.models.User;
-
 import com.whisperlink.whisperlink.models.UserRole;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
