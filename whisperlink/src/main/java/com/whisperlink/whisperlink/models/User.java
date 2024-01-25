@@ -22,32 +22,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;  // ADMIN, USER, MODERATOR
 
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-
     @ManyToMany(mappedBy = "users")
     private List<Organization> organizations;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Post> posts;
-
-    public void setUserRole(String userRole) {
-        this.userRole = UserRole.valueOf(userRole);
-    }
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     public User(String firstName, String lastName, String username, String password, UserRole userRole) {
         this.firstName = firstName;
@@ -59,6 +39,14 @@ public class User {
 
     public User() {
 
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public DateCalendar getBirthDate() {

@@ -3,8 +3,11 @@ package com.whisperlink.whisperlink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.whisperlink.whisperlink.configs.SecurityConfig;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
+@Import(SecurityConfig.class)
 public class WhisperlinkApplication {
 
 	public static void main(String[] args) {

@@ -1,5 +1,4 @@
 package com.whisperlink.whisperlink.controllers;
-import com.whisperlink.whisperlink.models.Organization;
 import com.whisperlink.whisperlink.models.User;
 import com.whisperlink.whisperlink.dao.UserRepository;
 import com.whisperlink.whisperlink.models.UserRole;
@@ -8,7 +7,6 @@ import com.whisperlink.whisperlink.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -74,14 +72,15 @@ public class UserController {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    // REGISTER User
+    //Register USER
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User newUser) {
-        // SET role for user
-        String userRole = "USER";
-
-        User registeredUser = userService.registerUser(newUser, UserRole.valueOf(userRole));
-        return ResponseEntity.ok(registeredUser);
+    public ResponseEntity<String> registerUser(@RequestBody User newUser) {
+        if (userRepository.existsByUsername(newUser.getUsername())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
+        }
+        newUser.setUserRole(UserRole.USER);
+        userRepository.save(newUser);
+        return ResponseEntity.ok("User registered successfully");
     }
 
     // LOGIN
