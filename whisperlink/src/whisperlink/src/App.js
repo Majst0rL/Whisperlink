@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Gender from "./components/Gender.jsx";
-import DateCalendar from "./components/DateCalendar.jsx";
+import DateCalendar from "./components/DateCalendar/DateCalendar.jsx";
 import Location from "./components/Location.jsx";
 import Organization from "./components/Organization.jsx";
 import Post from "./components/Post.jsx";

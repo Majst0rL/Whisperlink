@@ -1,14 +1,14 @@
 // DataService.js
 import axios from "axios";
 
-const baseURL = "http://localhost:8180/api";
+const baseURL = "http://localhost:8180/api/v1";
 
 export const dataService = {
-  getDateCalendars: () => axios.get(`${baseURL}/datecalendars`),
-  getDateCalendarById: (id) => axios.get(`${baseURL}/datecalendars/${id}`),
-
-  getGenders: () => axios.get(`${baseURL}/genders`),  // Assuming a genders endpoint in your API
-  getUserByGender: (gender) => axios.get(`${baseURL}/users?gender=${gender}`),
+  getDateCalendars: () => axios.get(`${baseURL}/date-calendars`),
+  getDateCalendarById: (id) => axios.get(`${baseURL}/date-calendars/${id}`),
+  createDateCalendar: (dateCalendarData) => axios.post(`${baseURL}/date-calendars`, dateCalendarData),
+  updateDateCalendar: (id, dateCalendarData) => axios.put(`${baseURL}/date-calendars/${id}`, dateCalendarData),
+  deleteDateCalendar: (id) => axios.delete(`${baseURL}/date-calendars/${id}`),
 
   getLocations: () => axios.get(`${baseURL}/locations`),  // Assuming a locations endpoint in your API
   getLocationById: (id) => axios.get(`${baseURL}/locations/${id}`),
@@ -42,4 +42,3 @@ export const dataService = {
 
   getUserRoles: () => axios.get(`${baseURL}/userroles`),
 };
-

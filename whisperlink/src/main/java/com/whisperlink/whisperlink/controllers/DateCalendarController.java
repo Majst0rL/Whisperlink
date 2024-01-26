@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/date-calendars")
+@CrossOrigin
 public class DateCalendarController {
 
     @Autowired

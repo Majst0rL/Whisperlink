@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/organizations")
+@CrossOrigin
 public class OrganizationController {
 
     private final OrganizationRepository organizationRepository;
