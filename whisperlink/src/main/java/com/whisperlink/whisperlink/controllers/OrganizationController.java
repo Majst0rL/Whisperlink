@@ -20,7 +20,7 @@ public class OrganizationController {
         this.organizationRepository = organizationRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public Iterable<Organization> getAllOrganizations() {
         return organizationRepository.findAll();
     }
@@ -30,7 +30,7 @@ public class OrganizationController {
         return organizationRepository.findById(id).orElse(null);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Organization createOrganization(@RequestBody Organization newOrganization) {
         return organizationRepository.save(newOrganization);
     }

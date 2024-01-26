@@ -25,7 +25,7 @@ public class UserController {
     }
 
     //GET all users
-    @GetMapping("/")
+    @GetMapping
     public List<User> getAllUsers() {return (List<User>) userRepository.findAll();}
 
     //GET user by ID
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     //Create User
-    @PostMapping("/")
+    @PostMapping
     public User createUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }
