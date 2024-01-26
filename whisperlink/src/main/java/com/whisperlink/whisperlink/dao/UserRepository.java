@@ -23,13 +23,12 @@ public interface UserRepository extends CrudRepository<User, Long> {
 //            "AND p.id = :postId")
 //    List<User> findUsersByPosts_IdAndBirthDate_Id(Long postId, Long dateCalendarId);
 //
-//
+
 
     Optional<User> findByUsername(String username);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 
 
-
-
+    boolean existsByPassword(String password);
 }

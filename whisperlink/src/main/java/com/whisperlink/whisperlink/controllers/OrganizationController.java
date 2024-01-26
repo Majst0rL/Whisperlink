@@ -5,9 +5,6 @@ import com.whisperlink.whisperlink.models.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/organizations")
 @CrossOrigin
@@ -35,13 +32,13 @@ public class OrganizationController {
         return organizationRepository.save(newOrganization);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateOrg/{id}")
     public Organization updateOrganization(@PathVariable("id") Long id, @RequestBody Organization updatedOrganization) {
         updatedOrganization.setId(id); // Preserve the ID from the path variable
         return organizationRepository.save(updatedOrganization);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteOrg/{id}")
     public void deleteOrganization(@PathVariable("id") Long id) {
         organizationRepository.deleteById(id);
     }

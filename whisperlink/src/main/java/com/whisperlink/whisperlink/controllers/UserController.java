@@ -42,7 +42,7 @@ public class UserController {
     }
 
     //UPDATE User
-    @PutMapping("/{id}")
+    @PutMapping("/updateUser/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User updatedUser) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isEmpty()) {
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     //DELETE User
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
@@ -81,7 +81,7 @@ public class UserController {
         return ResponseEntity.ok("User registered successfully");
     }
 
-    // LOGIN
+//    // LOGIN
 //    @PostMapping("/login")
 //    public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
 //        Optional<User> userOptional = userRepository.findByUsername(username);
@@ -90,10 +90,11 @@ public class UserController {
 //            User user = userOptional.get();
 //            if (password.equals(user.getPassword())) {
 //                return ResponseEntity.ok("Login successful for user: " + username);
+//            } else {
+//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password");
 //            }
 //        }
 //
 //        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
 //    }
-
 }
