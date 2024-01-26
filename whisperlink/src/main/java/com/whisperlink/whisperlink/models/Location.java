@@ -13,10 +13,11 @@ public class Location {
     private String country;
 
     //Constructor
-    public Location(String address, String city, String country) {
+    public Location(String address, String city, String country, String postalCode) {
         this.address = address;
         this.city = city;
         this.country = country;
+        this.postalCode = postalCode;
     }
 
     //Default constructor
