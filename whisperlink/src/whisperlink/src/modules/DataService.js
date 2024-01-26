@@ -10,9 +10,6 @@ export const dataService = {
   updateDateCalendar: (id, dateCalendarData) => axios.put(`${baseURL}/date-calendars/${id}`, dateCalendarData),
   deleteDateCalendar: (id) => axios.delete(`${baseURL}/date-calendars/${id}`),
 
-  getGenders: () => axios.get(`${baseURL}/genders`),  // Assuming a genders endpoint in your API
-  getUserByGender: (gender) => axios.get(`${baseURL}/users?gender=${gender}`),
-
   getLocations: () => axios.get(`${baseURL}/locations`),  // Assuming a locations endpoint in your API
   getLocationById: (id) => axios.get(`${baseURL}/locations/${id}`),
   createLocation: (locationData) => axios.post(`${baseURL}/locations`, locationData),
@@ -45,4 +42,3 @@ export const dataService = {
 
   getUserRoles: () => axios.get(`${baseURL}/userroles`),
 };
-

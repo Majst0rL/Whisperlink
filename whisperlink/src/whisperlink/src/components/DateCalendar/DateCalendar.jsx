@@ -7,6 +7,7 @@ const DateCalendarComponent = () => {
     const [day, setDay] = useState(0);
     const [month, setMonth] = useState(0);
     const [year, setYear] = useState(0);
+    const [id, setId] = useState(0);
 
     useEffect(() => {
         dataService.getDateCalendars() // Use dataService instead of DataService
@@ -22,35 +23,67 @@ const DateCalendarComponent = () => {
             month: month,
             year: year
         };
-        
+
         dataService.createDateCalendar(newDateCalendar);
+        document.location.reload();
+    }
+
+    const posodobi = (event) => {
+        event.preventDefault();
+
+        const newDateCalendar = {
+            id: id,
+            day: day,
+            month: month,
+            year: year
+        };
+
+        dataService.updateDateCalendar(id, newDateCalendar);
+        document.location.reload();
+    }
+
+    const izbrisi = (id) => {
+        dataService.deleteDateCalendar(id);
         document.location.reload();
     }
 
     return (
         <div>
             <h1>Date Calendars</h1>
-            <form onSubmit={ustvari}>
+            <form>
                 Day: <input type="number" name="day" value={day} onChange={(e) => {setDay(e.target.value)}} />
                 Month: <input type="number" name="month" value={month} onChange={(e) => {setMonth(e.target.value)}} />
                 Year: <input type="number" name="year" value={year} onChange={(e) => {setYear(e.target.value)}} />
-                <input type="submit" value="Dodaj" />
+                <input type="submit" value="Dodaj" onClick={ustvari} />
+
+                Id: <input type="number" name="id" value={id} onChange={(e) => {setId(e.target.value)}} />
+                <input type="submit" value="Posodobi" onClick={posodobi} />
             </form>
 
             <hr />
 
-            <ul>
-                {dateCalendars.map((dateCalendar) => (
-                    <li key={dateCalendar.id}>
-                        <p>ID: {dateCalendar.id}</p>
-                        <p>Day: {dateCalendar.day}</p>
-                        <p>Month: {dateCalendar.month}</p>
-                        <p>Year: {dateCalendar.year}</p>
-                        {/* Add other details as needed */}
-                    </li>
-                ))}
-            </ul>
-            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Day</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Operacija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dateCalendars.map((dateCalendar) => (
+                        <tr key={dateCalendar.id}>
+                            <td>{dateCalendar.id}</td>
+                            <td>{dateCalendar.day}</td>
+                            <td>{dateCalendar.month}</td>
+                            <td>{dateCalendar.year}</td>
+                            <td><button onClick={() => {izbrisi(dateCalendar.id)}}>Izbriši</button></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
