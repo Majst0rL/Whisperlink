@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Gender from "./components/Gender.jsx";
 import DateCalendar from "./components/DateCalendar/DateCalendar.jsx";
 import Location from "./components/Location/Location.jsx";
-import Organization from "./components/Organization.jsx";
+import Organization from "./components/Organization/Organization.jsx";
 import Post from "./components/Post.jsx";
 import TimePlanner from "./components/TimePlanner.jsx";
 import User from "./components/User.jsx";

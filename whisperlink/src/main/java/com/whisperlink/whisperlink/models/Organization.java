@@ -19,9 +19,11 @@ public class Organization {
     private String description;
     private Date creation;
 
-    public Organization(Long id, String name) {
+    public Organization(Long id, String name, String description, Date creation) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.creation = creation;
     }
 
     public Organization() {
